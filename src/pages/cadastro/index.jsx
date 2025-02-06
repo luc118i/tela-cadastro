@@ -3,7 +3,6 @@ import { MdEmail, MdLock, MdPerson } from "react-icons/md";
 import { Button } from "../../components/Button";
 import { Header } from "../../components/Header";
 import { Input } from "../../components/Input";
-import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 
 import {
@@ -23,11 +22,10 @@ const Cadastro = () => {
     control,
     handleSubmit,
     watch,
-    trigger,
     formState: { errors, isSubmitting },
   } = useForm({
-    mode: "onSubmit", // Validar ao submeter
-    reValidateMode: "onSubmit", // Revalidar ao submeter
+    mode: "onBlur",
+    reValidateMode: "onBlur",
     defaultValues: {
       nome: "",
       email: "",
@@ -37,19 +35,8 @@ const Cadastro = () => {
   });
 
   const senha = watch("senha");
-  const confirmSenha = watch("confirmSenha");
-
-  useEffect(() => {
-    // Revalidando os campos sempre que um deles mudar
-    trigger("confirmSenha");
-    trigger("senha");
-  }, [senha, confirmSenha, trigger]);
 
   const onSubmit = async (formData) => {
-    // Evita a submissão se houver erros de validação
-    if (Object.keys(errors).length > 0) {
-      return;
-    }
     console.log("Dados do formulário:", formData);
     navigate("/login");
   };

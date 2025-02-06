@@ -4,7 +4,7 @@ import { Button } from "../../components/Button";
 import { Header } from "../../components/Header";
 import { Input } from "../../components/Input";
 import { api } from "../../services/api";
-import { Link } from "react-router-dom";
+
 import { useForm } from "react-hook-form";
 
 import {
@@ -84,12 +84,8 @@ const Login = () => {
               <Button title="Entrar" $variant="secondary" type="submit" />
             </form>
             <Row>
-              <Link to="/esqueci-senha">
-                <EsqueciText>Esqueci minha senha</EsqueciText>
-              </Link>
-              <Link to="/cadastro">
-                <CriarText>Criar Conta</CriarText>
-              </Link>
+              <EsqueciText to="/esqueci-senha">Esqueci minha senha</EsqueciText>
+              <CriarText to="/cadastro">Criar Conta</CriarText>
             </Row>
           </Wrapper>
         </Column>
